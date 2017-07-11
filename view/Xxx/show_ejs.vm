@@ -1,0 +1,44 @@
+<% include ../layout/templates/header %>
+<% include ../layout/templates/navbar %>
+#set ( $uncapitalizedEntityName = ${fn.uncapitalize($entity.name)})
+##
+#set ( $keyAttributes = "" )
+#foreach ( $key in $entity.keyAttributes )
+#if ( $foreach.count > 1 )
+#set ( $keyAttributes = $keyAttributes + "/" )
+#end
+#set ( $keyAttributes = $keyAttributes + ${uncapitalizedEntityName} + '.' + ${fn.uncapitalize($key.name)} )
+#end
+##
+
+<div class="container" id="entityList">
+    <div id="${uncapitalizedEntityName}Panel" class="panel panel-info">
+        <div class="panel-heading"><h2>${entity.name} details </h2></div>
+        <div class="panel-body">
+            <div class="well">
+                <ul>
+#foreach ( $key in $entity.attributes )
+                    <li>${entity.name} ${key.name} : {{ ${uncapitalizedEntityName}.${key.name} }}</li>
+#end
+                </ul>
+            </div>
+            <a v-bind:href="'../../${uncapitalizedEntityName}/edit/'+${keyAttributes}">
+                <button type="button" class="btn btn-info">Edit</button>
+            </a>
+            <a href="'../../../../${uncapitalizedEntityName}/">
+                <button type="button" class="btn btn-info">Back to the list</button>
+            </a>
+        </div>
+    </div>
+</div>
+
+<script>
+#set ( $keyAttribs = "" )
+#foreach ( $key in $entity.keyAttributes )
+#if ( $foreach.count > 1 )
+#set ( $keyAttribs = $keyAttribs + "; " )
+#end
+#set ( $keyAttribs = $keyAttribs + $key.name )
+#end
+    show${entity.name}(<%= $keyAttribs %>);
+</script>

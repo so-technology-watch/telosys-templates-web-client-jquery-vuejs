@@ -1,0 +1,39 @@
+<% include ../layout/templates/header %>
+<% include ../layout/templates/navbar %>
+#set ( $uncapitalizedEntityName = ${fn.uncapitalize($entity.name)})
+
+<div class="container" id="entityList" a>
+    <div class="panel panel-success">
+        <div class="panel-heading"><h2>New ${entity.name}</h2></div>
+        <div class="panel-body">
+            <form id="${uncapitalizedEntityName}Form" v-on:submit.prevent="save">
+#foreach ( $attrib in $entity.attributes )
+#if ( $attrib.type == "Date" )
+                <div class="form-group">
+                    <label for="input${entity.name}${attrib.name}">${attrib.name}</label>
+                    <input type="date" class="form-control"
+                           v-model="${uncapitalizedEntityName}.${attrib.name}" placeholder="Enter ${entity.name} Year">
+                </div>
+#else
+                <div class="form-group">
+                    <label for="input${entity.name}${attrib.name}">${attrib.name}</label>
+                    <input type="text" class="form-control"
+                           v-model="${uncapitalizedEntityName}.${attrib.name}" placeholder="Enter ${entity.name} ${attrib.name}">
+                </div>
+#end
+#end
+                <div id="warningMessage" class="alert alert-danger" v-bind:style="'display:'+error.display">
+                    {{ error.errorCode }} : {{ error.message }}
+                </div>
+                <input type="submit" id="save${entity.name}" class="btn btn-success" value="Add a new ${entity.name}">
+                <a href="../../${uncapitalizedEntityName}">
+                    <button type="button" class="btn btn-info">Back to the list</button>
+                </a>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    formAdd${entity.name}();
+</script>

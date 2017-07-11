@@ -1,0 +1,12 @@
+.glyphicon {
+    padding-left: 10px;
+}
+
+#dbStatusMessage {
+    color: green;
+    font-size: large;
+}
+
+##warningMessage {
+    display: none;
+}

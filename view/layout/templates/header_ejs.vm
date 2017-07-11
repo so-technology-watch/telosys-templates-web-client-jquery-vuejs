@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Load Bootstrap CSS & Custom style -->
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/styles.css">
+
+    <!-- Load JQuery & Boostrap JS -->
+    <script src="../../js/libs/jquery-3.2.0.min.js"></script>
+    <script src="../../js/libs/bootstrap.min.js"></script>
+
+    <!-- Load Dexie.js -->
+    <script src="../../js/libs/dexie.js"></script>
+
+    <!-- Load VueJS -->
+    <script src="../../js/libs/vue.min.js"></script>
+
+    <!-- Load Client app config -->
+    <script src="../../js/client/commons/config.js"></script>
+
+    <!-- Load Client app common functions -->
+    <script src="../../js/client/commons/sqlite.js"></script>
+    <script src="../../js/client/commons/apiCommon.js"></script>
+    <script src="../../js/client/commons/persistence.js"></script>
+
+    <script src="../../js/client/commons/server/getOne.js"></script>
+    <script src="../../js/client/commons/server/getAll.js"></script>
+    <script src="../../js/client/commons/server/task.js"></script>
+    <script src="../../js/client/commons/server/create.js"></script>
+    <script src="../../js/client/commons/server/update.js"></script>
+    <script src="../../js/client/commons/server/delete.js"></script>
+
+    <!-- Load Client app modules -->
+#foreach ( $entity in $selectedEntities )
+    <script src="../../js/client/${fn.uncapitalize($entity.name)}FrontFunctions.js"></script>
+#end
+    <!-- Load Main Client app -->
+    <script src="../../js/client/home.js"></script>
+
+    <meta charset="UTF-8">
+    <title>HTML5 IndexedDB NodeJS</title>
+</head>
+<body>

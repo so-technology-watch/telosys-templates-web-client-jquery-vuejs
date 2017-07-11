@@ -1,0 +1,11 @@
+<% include ../layout/templates/header %>
+<script>
+#set ( $keyAttribs = "" )
+#foreach ( $key in $entity.keyAttributes )
+#if ( $foreach.count > 1 )
+#set ( $keyAttribs = $keyAttribs + "; " )
+#end
+#set ( $keyAttribs = $keyAttribs + $key.name )
+#end
+    delete${entity.name}(<%= $keyAttribs %>);
+</script>
